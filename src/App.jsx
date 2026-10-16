@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import './App.css'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
 function App() {
   const [photoPreview, setPhotoPreview] = useState('')
@@ -22,9 +23,9 @@ async function trackComplaint(event) {
   setTrackedComplaint(null)
 
   try {
-    const response = await fetch(
-      `http://localhost:5000/api/complaints/${encodeURIComponent(cleanId)}`
-    )
+    const response = await 
+fetch(`${API_BASE_URL}/api/complaints/${encodeURIComponent(cleanId)}`)
+
 
     const result = await response.json()
 
@@ -153,7 +154,9 @@ async function trackComplaint(event) {
 
     try {
      const response = await fetch(
-  'http://localhost:5000/api/complaints',
+  
+`${API_BASE_URL}/api/complaints`
+,
   {
     method: 'POST',
     body: formData,
